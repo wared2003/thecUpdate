@@ -1,0 +1,15 @@
+button{
+    margin:50px auto;
+    display: block !important;
+}
+ul{
+    margin: 0 auto;
+    width: 300px;
+}
+.text{
+    margin-top: 100px !important;
+}
+.titles{
+    text-align: center;
+    margin:80px auto;
+}
