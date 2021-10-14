@@ -8,28 +8,82 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-coy.min.css"
+          integrity="sha512-CKzEMG9cS0+lcH4wtn/UnxnmxkaTFrviChikDEk1MAWICCSN59sDWIF0Q5oDgdG9lxVrvbENSV1FtjLiBnMx7Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="style.css">
     <title>Hello, world!</title>
 </head>
 <body>
-<div id="titles" class="titles">
-    <h1>Ca c'est un titre</h1>
-    <h3>Ca c'est un sous-titre</h3>
-</div>
+<h1>Toggle de titre</h1>
+<p>on stock dans la variable <strong>titles</strong> les titres récupérés avec un queryselector. <br>On créer une variable <strong>titles_position</strong> dans laquelle on stockera la position du toggle</p>
+<div class="code"><pre><code class="'language-js">let titles = document.querySelector('#titles');
+let titles_position = 0;</code>
+</pre></div>
+<p>on ajoute un écouteur d'evement sur les titres pour détecter le click. En cas de clic on verifie l'etat du toglle et on change le texte en fonction.</p>
+<pre>
+    <code class="'language-js">
+        titles.addEventListener('click', () => {
+            let old_html = titles.innerHTML;
+            if (titles_position == 0 ){
+                titles.innerHTML = "<h3>Ca c'est un sous-titre</h3>" +
+                    "<h1>Ca c'est un titre</h1>";
+                titles_position = 1;
+            }else{
+                titles.innerHTML = "<h1>Ca c'est un titre</h1>" +
+                    "<h3>Ca c'est un sous-titre</h3>";
+                titles_position = 0;
+            }
+
+        })
+    </code>
+</pre>
+<iframe height="300" style="width: 100%;" scrolling="no" title="title-toggle"
+        src="https://codepen.io/edouard-nicolas/embed/QWMjjJv?default-tab=html%2Cresult&theme-id=dark" frameborder="no"
+        loading="lazy" allowtransparency="true" allowfullscreen="true">
+    See the Pen <a href="https://codepen.io/edouard-nicolas/pen/QWMjjJv">
+    title-toggle</a> by Edouard Nicolas (<a href="https://codepen.io/edouard-nicolas">@edouard-nicolas</a>)
+    on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
-<section class="ul">
-    <button type="button" class="btn btn-primary" id="list-btn">Primary</button>
+<h1>Selecteur de liste</h1>
+<p>on récupère dans la variable <strong>li</strong> tous les items de la liste via un querySelectorAll qui renvoie un array <br>on récupère dans la variable <strong>listbtn</strong> le bouton qui controlera la liste</p>
+<div class="code"><pre><code class="'language-js">let li = document.querySelectorAll('.list-group-item');
+let listbtn = document.querySelector('#list-btn');</code>
+</pre></div>
+<p>on créer et initialise à 0 la variable <strong>active_li</strong> qui stockera l'élement de la liste actif <br> on initialise également la variable <strong>back_to_botom</strong> qui stockera la direction du selecteur de la liste</p>
+<div class="code"><pre><code class="'language-js">let active_li = 0;
+let back_to_botom = true;</code>
+</pre></div>
+</pre></div>
+<p>on ajoute un écoueteur d'évenement sur le le bouton stocker dans <strong>listbtn</strong> en fonction de la direction et la position du sélecteur on itère dans la liste on retire la class active a l'élement <strong>active</strong> et on ajoute à lélement suivant la class <strong>active</strong> </p>
+<div class="code"><pre><code class="'language-js">listbtn.addEventListener('click', () => {
 
-    <ul class="list-group">
-        <li class="list-group-item active">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
-    </ul>
+    if (active_li < 4 && back_to_botom == true) {
+        li[active_li].className = 'list-group-item';
+        li[active_li + 1].className = 'list-group-item active';
+        active_li++;
+    } else {
+        li[active_li].className = 'list-group-item';
+        li[active_li - 1].className = 'list-group-item active';
+        active_li--;
+        if (active_li != 0) {
+            back_to_botom = false;
+        } else {
+            back_to_botom = true;
+        }
+    }
+})</code>
+</pre></div>
 
-</section>
+<iframe class='li-iframe' height="300" style="width: 100%;" scrolling="no" title="liste" src="https://codepen.io/edouard-nicolas/embed/dyzYGGy?default-tab=html%2Cresult&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+    See the Pen <a href="https://codepen.io/edouard-nicolas/pen/dyzYGGy">
+    liste</a> by Edouard Nicolas (<a href="https://codepen.io/edouard-nicolas">@edouard-nicolas</a>)
+    on <a href="https://codepen.io">CodePen</a>.
+</iframe>
+
+
 <section class="text">
     <div class="container">
         <div class="row">
@@ -45,7 +99,7 @@
                 reprehenderit tenetur ut vel! Ab atque culpa doloribus odio possimus similique ullam veniam! Asperiores,
                 enim excepturi fugiat id ipsum labore laborum voluptatum!
             </div>
-            <div class="col txt">
+            <div class="col txt language-js">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto assumenda atque consequuntur cum,
                 ducimus eum eveniet explicabo facere id ipsum iste modi molestias officia porro praesentium qui
                 reprehenderit sapiente sequi soluta temporibus. Ad iste, iure labore nisi quia quo reiciendis
@@ -55,9 +109,18 @@
     </div>
 </section>
 
+<section class="alert-hot-dev">
+    <div></div>
+</section>
+<div class="windows-alert" id="windows-alert">
+    <img src="assets/blank-dialog-boxes.jpg" alt="windows dialog box">
+</div>
+<section id="random_win_alert_container"></section>
+<button type="button" class="btn btn-danger" id="fucked-up-btn">clique-moi</button>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

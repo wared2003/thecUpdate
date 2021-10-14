@@ -1,3 +1,10 @@
+*{
+    text-align: center;
+}
+body{
+    width: 80%;
+    margin: 0 auto;
+}
 button{
     margin:50px auto;
     display: block !important;
@@ -12,4 +19,42 @@ ul{
 .titles{
     text-align: center;
     margin:80px auto;
+}
+.alert-hot-dev{
+    height: 400px;
+    width: 500px;
+    background-color: grey;
+    position: absolute;
+    top: 30vh;
+    left: 30vw;
+    z-index: 30;
+    display: none;
+}
+.windows-alert{
+    width: 40%;
+    position: absolute;
+    top: 30vh;
+    left: 30vw;
+    z-index: 30;
+    display: none;
+}
+.windows-alert img{
+    width: 100%;
+    height: 100%;
+}
+p{
+    font-size: 20px;
+}
+h1{
+    margin-bottom: 30px;
+}
+code{
+    width: 100%;
+}
+.code{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.li-iframe{
+    height: 450px;
 }
